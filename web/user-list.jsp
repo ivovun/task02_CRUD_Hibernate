@@ -4,25 +4,7 @@
 <html>
 <head>
     <title>User Management Application</title>
-    <%--    <jsp:useBean id="someModel" scope="request" type="model.User"/>--%>
-    <STYLE type="text/css">
-        html, body {
-            width: 100%;
-        }
-        table, tr, th, td {
-            margin: 0 auto;
-            border: 1px solid black;
-            text-align: center;
-            justify-content: center;
-            padding: 5px;
-        }
-        div {
-            text-align: center;
-            justify-content: center
-        }
-    </STYLE>
-    <link rel="stylesheet" href="style.css">
-
+    <style><%@include file="/css/style.css"%></style>
 </head>
 <body>
 
@@ -68,7 +50,7 @@
                     <input type="submit" value="Save"/>
                 </td>
             </form>
-        </tr>
+    </tr>
     </table>
 </div>
 </body>
