@@ -1,9 +1,22 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User  {
-	private long id;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(name = "name")
 	private String name;
+
+	@Column(name = "email")
 	private String email;
+
+	@Column(name = "country")
 	private String country;
 	
 	public User() {
@@ -27,7 +40,7 @@ public class User  {
 	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
