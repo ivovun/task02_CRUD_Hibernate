@@ -10,7 +10,7 @@ public interface UserService {
 
     User selectUser(long id) throws DBException;
 
-    List<User> selectAllUsers();
+    List<User> selectAllUsers()throws DBException;
 
     void deleteUser(long id) throws DBException;
 

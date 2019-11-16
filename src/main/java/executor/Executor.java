@@ -1,5 +1,7 @@
 package executor;
 
+import exception.DBException;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.*;
@@ -11,7 +13,7 @@ public class Executor {
         this.connection = connection;
     }
 
-    public void execUpdatePrepared(String update, Object[] params) throws SQLException {
+    public void execUpdatePrepared(String update, Object[] params) throws DBException {
         // https://stackoverflow.com/questions/15761791/transaction-rollback-on-sqlexception-using-new-try-with-resources-block
         boolean initialAutocommit = false;
         try {
@@ -27,9 +29,13 @@ public class Executor {
             // You may not want to handle all throwables, but you should with most, e.g.
             // Scala has examples: https://github.com/scala/scala/blob/v2.9.3/src/library/scala/util/control/NonFatal.scala#L1
             if (connection != null) {
-                connection.rollback();
+                try {
+                    connection.rollback();
+                } catch (SQLException e) {
+                    throw new DBException(e);
+                }
             }
-            throw throwable;
+            throw new DBException(throwable);
         } finally {
             if (connection != null) {
                 try {
@@ -50,7 +56,7 @@ public class Executor {
 
     public <T> T execQueryPrepared(String query, Object[] params,
                                    ResultHandler<T> handler)
-            throws SQLException {
+            throws DBException {
         // https://stackoverflow.com/questions/15761791/transaction-rollback-on-sqlexception-using-new-try-with-resources-block
         T returnValue;
         boolean initialAutocommit = false;
@@ -69,9 +75,13 @@ public class Executor {
             // You may not want to handle all throwables, but you should with most, e.g.
             // Scala has examples: https://github.com/scala/scala/blob/v2.9.3/src/library/scala/util/control/NonFatal.scala#L1
             if (connection != null) {
-                connection.rollback();
+                try {
+                    connection.rollback();
+                } catch (SQLException e) {
+                    throw new DBException(e);
+                }
             }
-            throw throwable;
+            throw new DBException(throwable);
         } finally {
             if (connection != null) {
                 try {

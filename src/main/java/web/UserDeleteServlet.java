@@ -16,7 +16,7 @@ public class UserDeleteServlet extends HttpServlet {
     private UserService instance = new UserServiceImpl();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
         try {
             instance.deleteUser(Integer.parseInt(req.getParameter("id")));
             resp.sendRedirect("list");

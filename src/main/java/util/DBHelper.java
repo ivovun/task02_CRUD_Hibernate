@@ -1,21 +1,21 @@
 package util;
 
+import exception.DBException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBHelper {
-    public static Connection getConnection() {
-        Connection connection = null;
+    public static Connection getConnection() throws DBException {
         try {
             Class.forName(PropertyReader.getProperty("jdbcSqlDriver"));
-            connection = DriverManager.getConnection(PropertyReader.getProperty("jdbcURL"),
+            return DriverManager.getConnection(PropertyReader.getProperty("jdbcURL"),
                     PropertyReader.getProperty("jdbcUsername"),
                     PropertyReader.getProperty("jdbcPassword"));
         } catch (SQLException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new DBException(e);
         }
-        return connection;
     }
 }

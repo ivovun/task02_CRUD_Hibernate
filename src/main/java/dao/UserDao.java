@@ -1,18 +1,19 @@
 package dao;
 
+import exception.DBException;
 import model.User;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDao {
-    void insertUser(User user)  throws SQLException;
+    void insertUser(User user)  throws DBException;
 
-    User selectUser(Long id);
+    User selectUser(Long id) throws DBException;
 
-    List<User> selectAllUsers();
+    List<User> selectAllUsers() throws DBException;
 
-    boolean deleteUser(Long id) throws SQLException;
+    boolean deleteUser(Long id) throws DBException;
 
-    boolean updateUser(User user) throws SQLException;
+    boolean updateUser(User user) throws DBException;
 }

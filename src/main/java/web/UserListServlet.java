@@ -1,5 +1,6 @@
 package web;
 
+import exception.DBException;
 import service.UserService;
 import service.UserServiceImpl;
 
@@ -17,7 +18,11 @@ public class UserListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("listUser", instance.selectAllUsers());
-        req.getRequestDispatcher("user-list.jsp").forward(req, resp);
+        try {
+            req.setAttribute("listUser", instance.selectAllUsers());
+            req.getRequestDispatcher("user-list.jsp").forward(req, resp);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
 }
