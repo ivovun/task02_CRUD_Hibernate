@@ -1,7 +1,6 @@
 package executor;
 
 import exception.DBException;
-import javassist.bytecode.analysis.Executor;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -56,7 +55,7 @@ public class ExecutorJDBC  {
     }
 
     public <T > T execQuery(String query, Object[] params,
-                                 ResultHandlerJDBC<T, ? extends Throwable> handler)
+                            ResultHandler<T, ResultSet, ? extends Throwable> handler)
             throws DBException {
         // https://stackoverflow.com/questions/15761791/transaction-rollback-on-sqlexception-using-new-try-with-resources-block
         T returnValue;

@@ -24,7 +24,7 @@ public class UserJdbcDAO implements UserDao {
     @Override
     public User selectUser(Long id) throws DBException {
         return executor.execQuery("select id,name,email,country from users where id =?",
-                new Object[]{id}, result -> {
+                new Object[]{id},(ResultSet result) -> {
                     if (!result.next()) {
                         return null;
                     }
@@ -36,7 +36,7 @@ public class UserJdbcDAO implements UserDao {
 
     @Override
     public List<User> selectAllUsers() throws DBException {
-        return executor.execQuery("select * from users where ?", new Object[]{true}, result -> {
+        return executor.execQuery("select * from users where ?", new Object[]{true}, (ResultSet result) -> {
             List<User> users = new ArrayList<>();
             while (result.next()) {
                 users.add(new User(result.getString("id"), result.getString("name"),
