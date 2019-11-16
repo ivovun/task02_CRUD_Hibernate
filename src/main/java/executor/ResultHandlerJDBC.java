@@ -10,6 +10,6 @@ import java.sql.SQLException;
  *         <p>
  *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
  */
-public interface ResultHandler<T> {
-	T handle(ResultSet resultSet) throws SQLException;
+public interface ResultHandlerJDBC<T, V extends Throwable> {
+	T handle(ResultSet resultSet) throws V;
 }

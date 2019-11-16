@@ -1,19 +1,19 @@
 package executor;
 
 import exception.DBException;
+import javassist.bytecode.analysis.Executor;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.*;
 
-public class ExecutorJDBC implements Executor {
+public class ExecutorJDBC  {
     private final Connection connection;
 
     public ExecutorJDBC(Connection connection) {
         this.connection = connection;
     }
 
-    @Override
     public void execUpdate(String update, Object[] params) throws DBException {
         // https://stackoverflow.com/questions/15761791/transaction-rollback-on-sqlexception-using-new-try-with-resources-block
         boolean initialAutocommit = false;
@@ -55,9 +55,8 @@ public class ExecutorJDBC implements Executor {
         }
     }
 
-    @Override
-    public <T> T execQuery(String query, Object[] params,
-                           ResultHandler<T> handler)
+    public <T > T execQuery(String query, Object[] params,
+                                 ResultHandlerJDBC<T, ? extends Throwable> handler)
             throws DBException {
         // https://stackoverflow.com/questions/15761791/transaction-rollback-on-sqlexception-using-new-try-with-resources-block
         T returnValue;
