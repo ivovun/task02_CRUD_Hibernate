@@ -18,7 +18,6 @@ public class DBHelper {
                     PropertyReader.getProperty("jdbcUsername"),
                     PropertyReader.getProperty("jdbcPassword"));
         } catch (SQLException | ClassNotFoundException e) {
-            // TODO Auto-generated catch block
             throw new DBException(e);
         }
     }
