@@ -16,9 +16,10 @@ public class UserJdbcDAO implements UserDao {
     }
 
     @Override
-    public void insertUser(User user) throws DBException {
+    public boolean insertUser(User user) throws DBException {
         executor.execUpdate("INSERT INTO users (name, email, country) VALUES (?, ?, ?)",
                 new Object[]{user.getName(), user.getEmail(), user.getCountry()});
+        return true;
     }
 
     @Override

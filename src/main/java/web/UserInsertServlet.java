@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "UserInsertServlet",  urlPatterns = {"/insert"})
 public class UserInsertServlet extends HttpServlet {
-    private UserService instance = new UserServiceImpl();
+    private UserService instance = UserServiceImpl.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {

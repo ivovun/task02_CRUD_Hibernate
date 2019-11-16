@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDao {
-    void insertUser(User user)  throws DBException;
+    boolean insertUser(User user)  throws DBException;
 
     User selectUser(Long id) throws DBException;
 

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "UsersListServlet",  urlPatterns = {"/", "/list"})
 public class UserListServlet extends HttpServlet {
-    private UserService instance = new UserServiceImpl();
+    private UserService instance = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

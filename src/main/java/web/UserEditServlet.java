@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @WebServlet(name = "UserEditServlet", urlPatterns = {"/edit", "/update"})
 public class UserEditServlet extends HttpServlet {
-    private UserService instance = new UserServiceImpl();
+    private UserService instance = UserServiceImpl.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
