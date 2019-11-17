@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/task02usersCRUD?serverTimezone=UTC</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="task02hibernate@localhost" uuid="0ffdb49f-b72f-4ce4-b8fc-f90835a63dd1">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/task02hibernate?serverTimezone=UTC</jdbc-url>
+    </data-source>
   </component>
 </project>

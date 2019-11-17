@@ -4,8 +4,8 @@ import exception.DBException;
 import executor.ExecutorHibernate;
 import model.User;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserHibernateDAO implements UserDao {
@@ -17,31 +17,28 @@ public class UserHibernateDAO implements UserDao {
 
     @Override
     public boolean insertUser(User user) throws DBException {
-        try {
-            executor.getSession().save(user);
+        return executor.execQuery(result -> {
+            executor.getSession().save(new User(user.getName(), user.getEmail(), user.getCountry()));
             return true;
-        } catch (Throwable e) {
-            throw new DBException(e);
-        }
+        });
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public User selectUser(Long id) throws DBException {
-        try {
-            return (User) executor.getSession().byId(User.class).getReference(id);
-        } catch (Throwable e) {
-            throw new DBException(e);
-        }
+        return executor.execQuery(  result -> {
+            List<User> users = (ArrayList<User>) executor.getSession().createQuery("FROM User user where user.id='"+id+"'").list();
+            if ( users.size() <= 0) {
+                return null;
+            }
+            return users.get(0);
+        });
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> selectAllUsers() throws DBException {
-        try {
-            return executor.execQuery(result -> (List<User>) executor.getSession().createQuery("select * from users").list());
-        } catch (Throwable e) {
-            throw new DBException(e);
-        }
+        return executor.execQuery(result -> (List<User>) executor.getSession().createQuery("FROM User").list());
     }
 
     @Override

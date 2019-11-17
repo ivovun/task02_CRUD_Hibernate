@@ -35,7 +35,6 @@
                 <td> ${user.country} </td>
                 <td>
                     <a href="edit?id=${user.id}">Edit</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="delete?id=${user.id}">Delete</a>
                 </td>
             </tr>
