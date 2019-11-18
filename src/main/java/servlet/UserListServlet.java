@@ -1,4 +1,4 @@
-package web;
+package servlet;
 
 import exception.DBException;
 import service.UserService;
@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "UserDeleteServlet",  urlPatterns = {"/delete"})
-public class UserDeleteServlet extends HttpServlet {
+@WebServlet(name = "UsersListServlet",  urlPatterns = {"/", "/list"})
+public class UserListServlet extends HttpServlet {
     private UserService userService = UserServiceImpl.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            userService.deleteUser(Long.parseLong(req.getParameter("id")));
-            resp.sendRedirect("list");
+            req.setAttribute("listUser", userService.selectAllUsers());
+            req.getRequestDispatcher("user-list.jsp").forward(req, resp);
         } catch (DBException e) {
             e.printStackTrace();
         }

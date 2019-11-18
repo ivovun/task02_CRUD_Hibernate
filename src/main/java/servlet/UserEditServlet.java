@@ -1,11 +1,10 @@
-package web;
+package servlet;
 
 import exception.DBException;
 import model.User;
 import service.UserService;
 import service.UserServiceImpl;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
