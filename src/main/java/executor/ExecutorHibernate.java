@@ -3,16 +3,20 @@ package executor;
 import exception.DBException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class ExecutorHibernate  {
-    private final Session session;
+    private Session session;
+    private final SessionFactory sessionFactory;
 
-    public ExecutorHibernate(Session session) {
-        this.session = session;
+    public ExecutorHibernate(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+        this.session = sessionFactory.openSession();
     }
 
     public Session getSession() {
+        session = sessionFactory.openSession();
         return session;
     }
 
@@ -32,6 +36,7 @@ public class ExecutorHibernate  {
             throw he;
         } finally {
             session.close();
+            session = sessionFactory.openSession();
         }
         return value;
     }

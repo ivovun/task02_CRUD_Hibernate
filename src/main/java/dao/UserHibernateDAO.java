@@ -4,6 +4,7 @@ import exception.DBException;
 import executor.ExecutorHibernate;
 import model.User;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,8 @@ import java.util.List;
 public class UserHibernateDAO implements UserDao {
     private ExecutorHibernate executor;
 
-    public UserHibernateDAO(Session session) {
-        this.executor = new ExecutorHibernate(session);
+    public UserHibernateDAO(SessionFactory sessionFactory) {
+        this.executor = new ExecutorHibernate(sessionFactory);
     }
 
     @Override

@@ -12,12 +12,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private static UserServiceImpl userServiceImpl;
     //before Сделать полем   private static UserDao getUserDaoImpl()
-
+    private UserDao userDao;
 
     private SessionFactory sessionFactory;
 
     private UserServiceImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+        this.userDao = new UserHibernateDAO(sessionFactory);
     }
 
     public static UserServiceImpl getInstance() {
@@ -27,9 +28,9 @@ public class UserServiceImpl implements UserService {
         return userServiceImpl;
     }
 
-    private static UserDao getUserDaoImpl()  {
-        return new UserHibernateDAO(getInstance().getSessionFactory().openSession());
-    }
+//    private static UserDao getUserDaoImpl()  {
+//        return new UserHibernateDAO(getInstance().getSessionFactory().openSession());
+//    }
 
     private SessionFactory getSessionFactory() {
         return sessionFactory;
@@ -37,28 +38,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean insertUser(User user) throws DBException {
-            getUserDaoImpl().insertUser(user);
+        userDao.insertUser(user);
         return true;
     }
 
     @Override
     public User selectUser(long id) throws DBException {
-        return getUserDaoImpl().selectUser(id);
+        return userDao.selectUser(id);
     }
 
     @Override
     public List<User> selectAllUsers() throws DBException {
-        return getUserDaoImpl().selectAllUsers();
+        return userDao.selectAllUsers();
     }
 
     @Override
     public void deleteUser(long id) throws DBException {
-        getUserDaoImpl().deleteUser(id);
+        userDao.deleteUser(id);
     }
 
     @Override
     public void updateUser(User user) throws DBException {
-        getUserDaoImpl().updateUser(user);
+        userDao.updateUser(user);
     }
 
 }
