@@ -34,7 +34,7 @@
                 <td> ${user.email} </td>
                 <td> ${user.country} </td>
                 <td>
-                    <a href="edit?id=${user.id}">Edit</a>
+                    <input type="button" value="Edit" onclick="window.location.href='edit?id=${user.id}'" />
                     <a href="delete?id=${user.id}">Delete</a>
                 </td>
             </tr>
