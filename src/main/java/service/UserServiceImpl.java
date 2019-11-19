@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean insertUser(User user) throws DBException {
-        getUserDaoImpl().insertUser(user);
+            getUserDaoImpl().insertUser(user);
         return true;
     }
 

@@ -18,7 +18,7 @@ public class ExecutorHibernate  {
 
     public <T> T execQuery( ResultHandler<T, Session , DBException> handler) throws DBException  {
         // !!!!  ИСПОЛЬЗУЮ null так как офиц код https://docs.jboss.org/hibernate/stable/core.old/reference/en/html/example-weblog-code.html
-        // из официального туториала на jboss.org ищем "Transaction tx = null;"  -->> https://docs.jboss.org/hibernate/core/3.3/reference/en/html/transactions.html
+        // из официального туториала на jboss.org см. место со слов: "Transaction tx = null;"  -->> https://docs.jboss.org/hibernate/core/3.3/reference/en/html/transactions.html
         Transaction transaction = null;
         T value; // можно (T) new Object(); // если боимся null
         try {

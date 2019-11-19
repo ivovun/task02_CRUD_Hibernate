@@ -5,18 +5,17 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.util.Properties;
 
-public class PropertyReader {
+class PropertyReader {
     private  static Properties properties;
     static {
         try {
-            String rootPath = Thread.currentThread().getContextClassLoader().getResource("config.properties").getPath();
             properties = new Properties();
-            properties.load(new FileInputStream(rootPath));
+            properties.load(new FileInputStream(Thread.currentThread().getContextClassLoader().getResource("config.properties").getPath()));
         } catch (IOException | NullPointerException e) {
             System.out.println("Error: config.properties is absent!");
         }
     }
-    public static String getProperty(String prop) {
+    static String getProperty(String prop) {
         return properties.getProperty(prop);
     }
  }
