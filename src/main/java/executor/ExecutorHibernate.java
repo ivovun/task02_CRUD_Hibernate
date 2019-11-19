@@ -16,7 +16,6 @@ public class ExecutorHibernate  {
     }
 
     public Session getSession() {
-        session = sessionFactory.openSession();
         return session;
     }
 
