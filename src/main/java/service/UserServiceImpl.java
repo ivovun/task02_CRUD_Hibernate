@@ -13,6 +13,7 @@ public class UserServiceImpl implements UserService {
     private static UserServiceImpl userServiceImpl;
     //before Сделать полем   private static UserDao getUserDaoImpl()
 
+
     private SessionFactory sessionFactory;
 
     private UserServiceImpl(SessionFactory sessionFactory) {
